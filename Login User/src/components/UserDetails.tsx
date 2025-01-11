@@ -1,6 +1,6 @@
 import { Avatar, Tooltip, Typography } from "@mui/material"
 import { useContext } from "react";
-import { userContext } from "./Home";
+import { userContext } from "./appBar";
 
 const UserDetails = () => {
 const context = useContext(userContext);
@@ -14,9 +14,9 @@ const context = useContext(userContext);
                 sx={{ mx: 2 }}
             />
         </Tooltip>}
-        {context.user&&<Typography sx={{ mx: 2, fontWeight: 'bold', color: 'white' }}>
-            {context.user.firstName}
-        </Typography>}
+        <Typography sx={{ mx: 2, fontWeight: 'bold', color: 'white' }}>
+        {context.user.firstName?  <>{context.user.firstName}</>:<>user</>}
+        </Typography>
         
     </>)
 }

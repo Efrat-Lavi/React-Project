@@ -1,11 +1,15 @@
 
-import Home from './components/Home'
+import { RouterProvider } from 'react-router-dom'
+import MyAppBar from './components/appBar'
+import { router } from './Router'
 function App() {
 
   return (
     <>
-    <Home></Home>
+    <MyAppBar/>
+    <RouterProvider router={router}/>
 
+    
     </>
   )
 }

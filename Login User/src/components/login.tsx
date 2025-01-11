@@ -1,7 +1,8 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Box, Button, FormControl, IconButton, InputAdornment, InputLabel, Modal, OutlinedInput, TextField, Typography } from "@mui/material"
 import { FormEvent, useContext, useEffect, useRef, useState } from "react"
-import { userContext } from './Home'
+import { userContext } from './appBar'
+import axios from "axios"
 const Login = ({ open, onClose, typeAction }: { open: boolean; onClose: () => void, typeAction: any }) => {
 
     const style = {
@@ -17,33 +18,62 @@ const Login = ({ open, onClose, typeAction }: { open: boolean; onClose: () => vo
     };
     const context = useContext(userContext);
     const firstNameRef = useRef<HTMLInputElement>(null);
-    const lastNameRef = useRef<HTMLInputElement>(null);
-    const emailRef = useRef<HTMLInputElement>(null);
-    const addressRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
-    const phoneRef = useRef<HTMLInputElement>(null);
+    const [userID, setUserId] = useState<string>()
 
-    const handleSubmit = (e: FormEvent) => {
-        e.preventDefault();
+    useEffect(() => {
         context?.userDispatch({
-            type: typeAction,
+            type: 'CREATE_USER',
             data: {
+                id: userID + '' || '',
                 firstName: firstNameRef.current?.value || '',
-                lastName: lastNameRef.current?.value || '',
-                email: emailRef.current?.value || '',
-                password: passwordRef.current?.value || '',
-                address: addressRef.current?.value || '',
-                phoneNumber: phoneRef.current?.value || ''
+                password: passwordRef.current?.value || ''
             }
         })
-    }
+    }, [userID]);
     useEffect(() => {
-        // סגירת המודל כאשר המשתמש מתעדכן
-        if (context.user.email !== '') {
-            console.log(context.user);
+        if (context.user.firstName !== '') {
             onClose();
         }
     }, [context.user]);
+
+    const handleSubmit = async (e: FormEvent) => {
+        e.preventDefault();
+        if (typeAction == 'Sign Up')
+            try {
+                const res = await axios.post('http://localhost:3000/api/user/register',
+                    {
+                        email: firstNameRef.current?.value,
+                        password: passwordRef.current?.value
+                    }
+                )
+
+                setUserId(res.data.userId);
+
+            } catch (e) {
+                console.log(e);
+                if (e.status === 422)
+                    alert('user already sign up')
+            }
+        else
+            try {
+                const res = await axios.post('http://localhost:3000/api/user/login',
+                    {
+                        email: firstNameRef.current?.value,
+                        password: passwordRef.current?.value
+                    },
+                    { headers: { 'user-id': '' + userID } }
+                )
+                setUserId(res.data.user.id);
+
+            } catch (e) {
+                console.log(e);
+                if (e.status === 422)
+                    alert('user not found')
+            }
+
+    }
+
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -63,12 +93,9 @@ const Login = ({ open, onClose, typeAction }: { open: boolean; onClose: () => vo
         >
             <Box sx={style}>
                 <Typography id="modal-modal-description" sx={{ mt: 2 }} component={'span'} variant={'body2'}>
-                    {typeAction == 'CREATE_USER' ?
-                        <Typography variant="h4" gutterBottom >
-                            Login
-                        </Typography> : <Typography variant="h4" gutterBottom >
-                            Update
-                        </Typography>}
+                    <Typography variant="h4" gutterBottom >
+                        Login
+                    </Typography>
                     <form onSubmit={handleSubmit}>
                         <TextField
                             inputRef={firstNameRef}
@@ -79,40 +106,9 @@ const Login = ({ open, onClose, typeAction }: { open: boolean; onClose: () => vo
                             defaultValue={context.user.firstName}
 
                         />
-                        <TextField
-                            inputRef={lastNameRef}
-                            name="name"
-                            label="Last Name"
-                            fullWidth
-                            margin="normal"
-                            defaultValue={context.user.lastName}
-                        />
-                        <TextField
-                            required
-                            inputRef={emailRef}
-                            name="email"
-                            label="Email"
-                            fullWidth
-                            margin="normal"
-                            defaultValue={context.user.email}
-                        />
-                        <TextField
-                            inputRef={phoneRef}
-                            name="phone"
-                            label="Phone"
-                            fullWidth
-                            margin="normal"
-                            defaultValue={context.user.phoneNumber}
-                        />
-                        <TextField
-                            inputRef={addressRef}
-                            name="address"
-                            label="Address"
-                            fullWidth
-                            margin="normal"
-                            defaultValue={context.user.address}
-                        />
-                        <FormControl sx={{/* m: 1, width: '25ch'*/ }} margin="normal" variant="outlined">
+
+
+                        <FormControl margin="normal" variant="outlined">
                             <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                             <OutlinedInput
                                 id="outlined-adornment-password"
@@ -138,13 +134,9 @@ const Login = ({ open, onClose, typeAction }: { open: boolean; onClose: () => vo
                             />
 
                         </FormControl>
-                        {typeAction == 'CREATE_USER' ?
-                            <Button type="submit" variant="contained" color="primary" fullWidth>
-                                Login
-                            </Button> : <Button type="submit" variant="contained" color="primary" fullWidth>
-                                Update
-                            </Button>
-                        }
+                        <Button type="submit" variant="contained" color="primary" fullWidth>
+                            Login
+                        </Button>
 
                     </form>
 
