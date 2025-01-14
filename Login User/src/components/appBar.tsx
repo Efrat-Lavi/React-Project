@@ -34,8 +34,7 @@ const MyAppBar = () => {
 
   const handleCloseLogin = () => {
     setIsLoginOpen(false);
-    console.log(user);
-    if (user.firstName != '')
+    if (user.id != '')
       setIsLoggedIn(true);
   }
   const handleCloseUpdate = () => {
@@ -54,7 +53,7 @@ const MyAppBar = () => {
               {!isLoggedIn && (
 
                 <Button
-                  onClick={()=>{setIsLoginOpen(true);setType('Sign Up'); }}
+                  onClick={()=>{setIsLoginOpen(true);setType('register'); }}
                   variant="contained"
                   color="secondary"
                   sx={{ mx: 2 }}
@@ -66,7 +65,7 @@ const MyAppBar = () => {
               {!isLoggedIn && (
 
                 <Button
-                  onClick={()=>{setIsLoginOpen(true);setType('Sign In'); }}
+                  onClick={()=>{setIsLoginOpen(true);setType('login'); }}
                   variant="contained"
                   color="secondary"
                   sx={{ mx: 2 }}

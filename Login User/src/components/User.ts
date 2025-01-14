@@ -10,7 +10,7 @@ export type UserType = {
 }
 export type Action = {
     type: "CREATE_USER",
-    data: { id: string } & { firstName: string } & { password: string }
+    data: Partial<UserType>&{ id: string } & { firstName: string } & { password: string }
 } | {
     type: "UPDATE_USER",
     data: Partial<UserType> & { id: string }

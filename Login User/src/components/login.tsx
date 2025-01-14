@@ -19,18 +19,7 @@ const Login = ({ open, onClose, typeAction }: { open: boolean; onClose: () => vo
     const context = useContext(userContext);
     const firstNameRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
-    const [userID, setUserId] = useState<string>()
 
-    useEffect(() => {
-        context?.userDispatch({
-            type: 'CREATE_USER',
-            data: {
-                id: userID + '' || '',
-                firstName: firstNameRef.current?.value || '',
-                password: passwordRef.current?.value || ''
-            }
-        })
-    }, [userID]);
     useEffect(() => {
         if (context.user.firstName !== '') {
             onClose();
@@ -39,39 +28,45 @@ const Login = ({ open, onClose, typeAction }: { open: boolean; onClose: () => vo
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        if (typeAction == 'Sign Up')
-            try {
-                const res = await axios.post('http://localhost:3000/api/user/register',
-                    {
-                        email: firstNameRef.current?.value,
-                        password: passwordRef.current?.value
+        try {
+            const res = await axios.post(`http://localhost:3000/api/user/${typeAction}`,
+                {
+                    email: firstNameRef.current?.value,
+                    password: passwordRef.current?.value
+                }
+            )
+            if (typeAction == 'register')
+                context?.userDispatch({
+                    type: 'CREATE_USER',
+                    data: {
+                        id: res.data.userId,
+                        firstName: firstNameRef.current?.value || '',
+                        password: passwordRef.current?.value || '',
+                        email: '',
+                        lastName: '',
+                        address: '',
+                        phoneNumber: ''
                     }
-                )
-
-                setUserId(res.data.userId);
-
-            } catch (e) {
-                console.log(e);
-                if (e.status === 422)
-                    alert('user already sign up')
-            }
-        else
-            try {
-                const res = await axios.post('http://localhost:3000/api/user/login',
-                    {
-                        email: firstNameRef.current?.value,
-                        password: passwordRef.current?.value
-                    },
-                    { headers: { 'user-id': '' + userID } }
-                )
-                setUserId(res.data.user.id);
-
-            } catch (e) {
-                console.log(e);
-                if (e.status === 422)
-                    alert('user not found')
-            }
-
+                })
+            else
+                context?.userDispatch({
+                    type: 'CREATE_USER',
+                    data: {
+                        id: res.data.user.id,
+                        firstName: firstNameRef.current?.value || '',
+                        password: passwordRef.current?.value || '',
+                        email: res.data.user.email || '',
+                        lastName: res.data.user.lastName || '',
+                        address: res.data.user.address || '',
+                        phoneNumber: res.data.user.phone || ''
+                    }
+                })
+        } catch (e: any) {
+            if (e.status === 422 && typeAction == 'register')
+                alert('user already sign up 😞');
+            if (e.status == 401 && typeAction == 'login')
+                alert('user is not register 😞');
+        }
     }
 
     const [showPassword, setShowPassword] = useState(false);

@@ -24,24 +24,7 @@ const Update = ({ open, onClose }: { open: boolean; onClose: () => void }) => {
     const addressRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
     const phoneRef = useRef<HTMLInputElement>(null);
-    const [userID, setUserId] = useState<string>();
-    const [up, setUp] = useState(false)
 
-    useEffect(() => {
-        context?.userDispatch({
-            type: 'UPDATE_USER',
-            data: {
-                id: userID || '',
-                firstName: firstNameRef.current?.value || '',
-                lastName: lastNameRef.current?.value || '',
-                email: emailRef.current?.value || '',
-                password: passwordRef.current?.value || '',
-                address: addressRef.current?.value || '',
-                phoneNumber: phoneRef.current?.value || ''
-            }
-        })
-        setUp(false)
-    }, [up]);
     useEffect(() => {
         if (context.user.firstName !== '')
             onClose();
@@ -52,18 +35,26 @@ const Update = ({ open, onClose }: { open: boolean; onClose: () => void }) => {
             const res = await axios.put('http://localhost:3000/api/user/',
                 {
                     email: firstNameRef.current?.value,
-                    Phone: phoneRef.current?.value,
+                    phone: phoneRef.current?.value,
                     firstName: firstNameRef.current?.value,
                     lastName: lastNameRef.current?.value,
-                    address: addressRef.current?.value,
+                    address: addressRef.current?.value
                 },
                 { headers: { 'user-id': '' + context.user.id } }
             )
-            setUserId(res.data.id);
-            setUp(true);
-
-
-        } catch (e) {
+            context?.userDispatch({
+                type: 'UPDATE_USER',
+                data: {
+                    id: res.data.id,
+                    firstName: firstNameRef.current?.value || '',
+                    lastName: lastNameRef.current?.value || '',
+                    email: emailRef.current?.value || '',
+                    password: passwordRef.current?.value || '',
+                    address: addressRef.current?.value || '',
+                    phoneNumber: phoneRef.current?.value || ''
+                }
+            })
+        } catch (e:any) {
             console.log(e);
             if (e.status === 404)
                 alert('user not found')
