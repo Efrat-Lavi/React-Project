@@ -32,6 +32,16 @@
       "id": 1738159012462,
       "email": "Efrat",
       "password": "2005"
+    },
+    {
+      "id": 1738170857887,
+      "email": "Anat",
+      "password": "1965"
+    },
+    {
+      "id": 1738186677014,
+      "email": "gg",
+      "password": "gg"
     }
   ],
   "recipes": [
@@ -110,6 +120,24 @@
       "authorId": "1738159012462",
       "ingredients": "קמח סוכר שמן קקאו",
       "instructions": "לערבב במיקסר ולאפות על 180"
+    },
+    {
+      "id": 1738170904229,
+      "title": "עוגת תפוזים",
+      "products": "מיקסר",
+      "description": "מיוחדת",
+      "authorId": "1738170857887",
+      "ingredients": "קמח שמן סוכר תפוזים אבקת אפייה",
+      "instructions": "לערבב"
+    },
+    {
+      "id": 1738186630815,
+      "title": "l",
+      "products": "l",
+      "description": "l",
+      "authorId": "1738159012462",
+      "ingredients": "l",
+      "instructions": "l"
     }
   ]
 }

@@ -9,14 +9,3 @@ export const style = {
     boxShadow: 24,
     p: 4,
 };
-// export const styleNav={
-//     position: "absolute",
-//     top: "20px",
-//     right: "20px",
-//     display: "flex",
-//     gap: "10px",
-//     backgroundColor: "#f8f9fa",
-//     padding: "10px 15px",
-//     borderRadius: "5px",
-//     boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
-// }
