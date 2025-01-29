@@ -1,4 +1,6 @@
+import { useContext, } from "react";
 import { Link, Outlet } from "react-router"
+import { userContext } from "../App";
 
 const style = {
     textDecoration: "none",
@@ -6,7 +8,8 @@ const style = {
     fontWeight: "bold",
 }
 const AppLayout = () => {
-
+    const context = useContext(userContext);
+   
 return (<>
         <nav style={{
             position: "absolute",
@@ -20,9 +23,14 @@ return (<>
             boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
         }}>
 
-            <Link to='/' style={style}>Home</Link>
+            <Link to='/' onClick={()=>console.log(context.user)
+            } style={style}>Home</Link>
             |
             <Link to='/about' style={style}>About</Link>
+            |
+            <Link to='/recipes' style={style}>Recipes</Link>
+            {context.user.id!="" && 
+            <Link to='/addRecipe' style={style}>Add Recipe</Link>}
 
         </nav>
         <Outlet></Outlet>

@@ -1,22 +1,10 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { Box, Button, FormControl, IconButton, InputAdornment, InputLabel, Modal, OutlinedInput, TextField, Typography } from "@mui/material"
 import { FormEvent, useContext, useEffect, useRef, useState } from "react"
-import { userContext } from './appBar'
+import { userContext } from '../App'
 import axios from "axios"
-
+import { style } from "./style";
 const Update = ({ open, onClose }: { open: boolean; onClose: () => void }) => {
-
-    const style = {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 400,
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
-        p: 4,
-    };
     const context = useContext(userContext);
     const firstNameRef = useRef<HTMLInputElement>(null);
     const lastNameRef = useRef<HTMLInputElement>(null);
@@ -24,7 +12,6 @@ const Update = ({ open, onClose }: { open: boolean; onClose: () => void }) => {
     const addressRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
     const phoneRef = useRef<HTMLInputElement>(null);
-
     useEffect(() => {
         if (context.user.firstName !== '')
             onClose();
@@ -60,73 +47,31 @@ const Update = ({ open, onClose }: { open: boolean; onClose: () => void }) => {
                 alert('user not found')
         }
     }
-   
     const [showPassword, setShowPassword] = useState(false);
-    const handleClickShowPassword = () => setShowPassword(!showPassword);
-    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
-    };
-    const handleMouseUpPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
-    };
-
-
+    // const handleClickShowPassword = () => setShowPassword(!showPassword);
+    // const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    //     event.preventDefault();
+    // };
+    // const handleMouseUpPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    //     event.preventDefault();
+    // };
     return (<>
         <Modal
             open={open}
             onClose={onClose}
             aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-        >
+            aria-describedby="modal-modal-description" >
             <Box sx={style}>
                 <Typography id="modal-modal-description" sx={{ mt: 2 }} component={'span'} variant={'body2'}>
-                    <Typography variant="h4" gutterBottom >
-                        Update
-                    </Typography>
+                    <Typography variant="h4" gutterBottom >Update</Typography>
                     <form onSubmit={handleSubmit}>
-                        <TextField
-                            inputRef={firstNameRef}
-                            name="name"
-                            label="First Name"
-                            fullWidth
-                            margin="normal"
-                            defaultValue={context.user.firstName}
-
-                        />
-                        <TextField
-                            inputRef={lastNameRef}
-                            name="name"
-                            label="Last Name"
-                            fullWidth
-                            margin="normal"
-                            defaultValue={context.user.lastName}
-                        />
-                        <TextField
-                            required
-                            inputRef={emailRef}
-                            name="email"
-                            label="Email"
-                            fullWidth
-                            margin="normal"
-                            defaultValue={context.user.email}
-                        />
-                        <TextField
-                            inputRef={phoneRef}
-                            name="phone"
-                            label="Phone"
-                            fullWidth
-                            margin="normal"
-                            defaultValue={context.user.phoneNumber}
-                        />
-                        <TextField
-                            inputRef={addressRef}
-                            name="address"
-                            label="Address"
-                            fullWidth
-                            margin="normal"
-                            defaultValue={context.user.address}
-                        />
-                        <FormControl sx={{/* m: 1, width: '25ch'*/ }} margin="normal" variant="outlined">
+                        <TextField inputRef={firstNameRef} name="name" label="First Name" fullWidth margin="normal" defaultValue={context.user.firstName}/>
+                        <TextField inputRef={lastNameRef} name="name" label="Last Name" fullWidth margin="normal" defaultValue={context.user.lastName}/>
+                        <TextField required inputRef={emailRef} name="email" label="Email" fullWidth defaultValue={context.user.email}/>
+                        <TextField inputRef={phoneRef} name="phone" label="Phone" fullWidth margin="normal" defaultValue={context.user.phoneNumber}/>
+                        <TextField inputRef={addressRef} name="address" label="Address" fullWidth margin="normal" defaultValue={context.user.address}/>
+                        <TextField inputRef={passwordRef} name="password" label="Password" fullWidth margin="normal" defaultValue={context.user.password}/>
+                        {/* <FormControl margin="normal" variant="outlined">
                             <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                             <OutlinedInput
                                 id="outlined-adornment-password"
@@ -140,28 +85,22 @@ const Update = ({ open, onClose }: { open: boolean; onClose: () => void }) => {
                                             onClick={handleClickShowPassword}
                                             onMouseDown={handleMouseDownPassword}
                                             onMouseUp={handleMouseUpPassword}
-                                            edge="end"
-                                        >
+                                            edge="end" >
                                             {showPassword ? <VisibilityOff /> : <Visibility />}
                                         </IconButton>
                                     </InputAdornment>
                                 }
                                 label="Password"
                                 inputRef={passwordRef}
-                                defaultValue={context.user.password}
-                            />
-
-                        </FormControl>
+                                defaultValue={context.user.password} />
+                        </FormControl> */}
                         <Button type="submit" variant="contained" color="primary" fullWidth>
                             Update
                         </Button>
-
                     </form>
-
                 </Typography>
             </Box>
         </Modal>
-
     </>)
 }
 export default Update
