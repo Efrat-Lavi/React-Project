@@ -1,40 +1,96 @@
-import { useContext, } from "react";
-import { Link, Outlet } from "react-router"
+
+import { useContext } from "react";
+import { Link, Outlet } from "react-router";
 import { userContext } from "../App";
+import { Box, Stack, Typography } from "@mui/material";
+import { Home, Info, RestaurantMenu, AddCircle } from "@mui/icons-material";
 
-const style = {
-    textDecoration: "none",
-    color: "#007bff",
-    fontWeight: "bold",
-}
 const AppLayout = () => {
-    const context = useContext(userContext);
-   
-return (<>
-        <nav style={{
-            position: "absolute",
-            top: "20px",
-            right: "20px",
+  const context = useContext(userContext);
+  const menuItems = [
+    { text: "Home", icon: <Home />, path: "/" },
+    { text: "About", icon: <Info />, path: "/about" },
+    { text: "Recipes", icon: <RestaurantMenu />, path: "/recipes" },
+  ];
+
+  const styleSx = {
+    fontWeight: "bold",
+    px: 3,
+    py: 1,
+    borderRadius: "8px",
+    transition: "background-color 0.3s, transform 0.2s",
+    fontSize: "16px",
+    letterSpacing: "0.5px",
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
+    "&:hover": {
+      color: "white",
+      backgroundColor: "primary.light",
+      transform: "scale(1.03)",
+    },
+  };
+
+  return (
+    <>
+      <Box
+        component="nav"
+        sx={{
+          position: "absolute",
+          top: "80px",
+          right: 20,
+          backgroundColor: "#ffffff",
+          boxShadow: "0 4px 10px rgba(0, 0, 0, 0.15)",
+          borderRadius: "8px",
+          padding: "10px 20px",
+          width: "calc(100% - 40px)",
+        }}
+      >
+        <Stack
+          direction="row"
+          spacing={3}
+          alignItems="center"
+          justifyContent="center"
+          sx={{
             display: "flex",
-            gap: "10px",
-            backgroundColor: "#f8f9fa",
-            padding: "10px 15px",
-            borderRadius: "5px",
-            boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
-        }}>
+            flexWrap: "wrap",
+            gap: "20px",
+          }}
+        >
+          {menuItems.map((item, index) => (
+            <Link key={index} to={item.path} style={{ textDecoration: "none" }}>
+              <Typography variant="h6" color="primary" sx={styleSx}>
+                {item.icon}
+                {item.text}
+              </Typography>
+            </Link>
+          ))}
 
-            <Link to='/' onClick={()=>console.log(context.user)
-            } style={style}>Home</Link>
-            |
-            <Link to='/about' style={style}>About</Link>
-            |
-            <Link to='/recipes' style={style}>Recipes</Link>
-            {context.user.id!="" && 
-            <Link to='/addRecipe' style={style}>Add Recipe</Link>}
+          {context.user.id !== "" && (
+            <Link to="/addRecipe" style={{ textDecoration: "none" }}>
+              <Typography variant="h6" color="primary" sx={styleSx}>
+                <AddCircle />
+                Add Recipe
+              </Typography>
+            </Link>
+          )}
+        </Stack>
+      </Box>
 
-        </nav>
-        <Outlet></Outlet>
-    </>)
-}
+      <Box
+        sx={{
+          paddingTop: "100px",
+          minHeight: "calc(100vh - 100px)",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "center",
+        }}
+      >
+        <Outlet />
+      </Box>
+    </>
+  );
+};
 
-export default AppLayout
+export default AppLayout;

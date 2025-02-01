@@ -6,9 +6,10 @@ export type Recipe = {
     id:string,
     title: string,
     description: string,
+    difficulty:string
     products: string,
-    ingredients: string,
-    instructions: string,
+    ingredients: string[]
+    instructions: string[],
   }
   
 interface RecipesState {
@@ -35,10 +36,13 @@ export const fetchData = createAsyncThunk("recipes/fetch", async (_, thunkAPI) =
 export const addRecipe = createAsyncThunk(
   "recipes/add",
   async ({ recipe, userId }: { recipe: Omit<Recipe, "id">; userId: string }, thunkAPI) => {
+    
     try {
       const response = (await axios.post("http://localhost:3000/api/recipes", recipe,
-        { headers: { 'user-id': '' + userId } }
+        { headers: { 'user-id': '' + userId} }
       ))
+      console.log(response.data.recipe);
+      
       return response.data.recipe;
     } catch (error: any) {
         console.log(error);

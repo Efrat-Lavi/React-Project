@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import authMiddleware from '../middleware/authMiddleware.js';
 import { fileURLToPath } from 'url';
+import { log } from 'console';
 
 const router = express.Router();
 const __filename = fileURLToPath(import.meta.url);
@@ -20,6 +21,7 @@ router.post('/', authMiddleware, (req, res) => {
     const {
         title,
         description,
+        difficulty,
         products,
         ingredients,
         instructions
@@ -31,16 +33,23 @@ router.post('/', authMiddleware, (req, res) => {
         title,
         products,
         description,
+        difficulty:difficulty,
         authorId: req.header('user-id'),
         ingredients,
         instructions,
     };
 
+
     db.recipes.push(newRecipe);
     fs.writeFileSync(dbPath, JSON.stringify(db, null, 2));
-
-    res.status(201).json({ message: "Recipe added", recipe: newRecipe });
-    res.status(403).json({message:"failed"})
+    if (newRecipe) {
+        console.log(newRecipe.difficulty);
+        res.status(201).json({ message: "Recipe added", recipe: newRecipe });
+      } else {
+        res.status(403).json({ message: "Failed to add recipe" });
+      }
+      
+    
 });
 
 export default router;

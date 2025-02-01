@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import { fetchData } from "../store/recipesSlice";
-import { AppDispatch, StoreType } from "../store/store";
+import { fetchData } from "../../store/recipesSlice";
+import { AppDispatch, StoreType } from "../../store/store";
 import { useEffect, useState } from "react";
 import { Grid, Card, CardContent, Typography, Button, Box } from "@mui/material";
 import RecipeDetails from "./recipe";
-import { Recipe } from "../store/recipesSlice";
-import './style.css';
+import { Recipe } from "../../store/recipesSlice";
+import '../style/style.css';
 
 const RecipesList = () => {
   const { list: recipesList, loading, error } = useSelector((store: StoreType) => store.recipes);
