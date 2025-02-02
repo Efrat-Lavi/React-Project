@@ -63,6 +63,7 @@ const Login = ({ open, onClose, typeAction }: { open: boolean; onClose: () => vo
                 label="Email"
                 fullWidth
                 margin="normal"
+                type="email"
                 defaultValue={context.user.email}
               />
               <FormControl margin="normal" variant="outlined" fullWidth>
