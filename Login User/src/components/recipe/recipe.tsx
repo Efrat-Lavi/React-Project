@@ -7,7 +7,12 @@ import BorderColorRoundedIcon from '@mui/icons-material/BorderColorRounded';
 import DehazeRoundedIcon from '@mui/icons-material/DehazeRounded';
 import { Recipe } from '../../store/recipesSlice';
 import DwonLoad from './doenload';
+import { useContext } from 'react';
+import { userContext } from '../../App';
+import { useNavigate } from 'react-router-dom';
 const RecipeDetails = ({ recipe }: { recipe: Recipe }) => {
+  const context = useContext(userContext);
+  const navigate = useNavigate();
   const getDifficultyIcon = (difficulty: string) => {
     switch (difficulty) {
       case 'Easy':
@@ -20,10 +25,14 @@ const RecipeDetails = ({ recipe }: { recipe: Recipe }) => {
         return null;
     }
   };
-
   return (
-    <Paper sx={{ p: 3, m: 2, boxShadow: 5, backgroundColor: '#f9f9f9', borderRadius: '16px', maxWidth: '50%',margin: '0 auto', }}>
-      <Box sx={{ display: 'flex',float: 'left' }}> <DwonLoad recipe={recipe} /></Box>
+    <Paper sx={{ p: 3, m: 2, boxShadow: 5, backgroundColor: '#f9f9f9', borderRadius: '16px', maxWidth: '50%', margin: '0 auto', }}>
+      <Box sx={{ display: 'flex', float: 'left' }}> <DwonLoad recipe={recipe} /></Box>
+      {context.user.id == recipe.authorId &&
+        <Button variant="outlined" color="primary" sx={{ mt: 1 }}
+          onClick={() => {navigate(`/update/${recipe.id}`);}}>
+          Edit
+        </Button>}
       <Typography variant="h4" sx={{ color: '#3f51b5' }} gutterBottom>
         {recipe.title}
       </Typography>

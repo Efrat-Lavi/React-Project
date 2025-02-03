@@ -1,7 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
-
 export type Recipe = {
     id:string,
     title: string,
@@ -10,20 +8,18 @@ export type Recipe = {
     products: string,
     ingredients: string[]
     instructions: string[],
+    authorId:string
   }
-  
 interface RecipesState {
   list: Recipe[];
   loading: boolean;
   error: string | null;
 }
-
 const initialState: RecipesState = {
   list: [],
   loading: false,
   error: null,
 };
-
 export const fetchData = createAsyncThunk("recipes/fetch", async (_, thunkAPI) => {
   try {
     const response = await axios.get("http://localhost:3000/api/recipes");
@@ -32,21 +28,32 @@ export const fetchData = createAsyncThunk("recipes/fetch", async (_, thunkAPI) =
     return thunkAPI.rejectWithValue(error.message);
   }
 });
-
 export const addRecipe = createAsyncThunk(
   "recipes/add",
-  async ({ recipe, userId }: { recipe: Omit<Recipe, "id">; userId: string }, thunkAPI) => {
-    
+  async ({ recipe, userId }: { recipe: Partial<Recipe>; userId: string }, thunkAPI) => {
     try {
       const response = (await axios.post("http://localhost:3000/api/recipes", recipe,
         { headers: { 'user-id': '' + userId} }
       ))
-      console.log(response.data.recipe);
-      
       return response.data.recipe;
     } catch (error: any) {
         console.log(error);
-        
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+export const updateRecipe = createAsyncThunk(
+  "recipes/update",
+  async ({ recipe }: { recipe: Partial<Recipe>;}, thunkAPI) => {
+    console.log(recipe);
+    
+    try {
+      const response = (await axios.put("http://localhost:3000/api/recipes", recipe,
+        { headers: { 'id': '' +recipe.id} }
+      ))
+      return response.data.recipe;
+    } catch (error: any) {
+        console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -55,7 +62,6 @@ const recipesSlice = createSlice({
   name: "recipes",
   initialState,
   reducers: {},
-  
   extraReducers: (builder) => {
     builder
     .addCase(fetchData.pending, (state) => {
@@ -79,9 +85,17 @@ const recipesSlice = createSlice({
       })
     .addCase(addRecipe.fulfilled, (state, action) => {
       state.list.push(action.payload);
-    });
-  
+    }) 
+    .addCase(updateRecipe.rejected, (state, action) => {
+      state.error = typeof action.payload === "string" 
+        ? action.payload 
+        : action.error.message || "Error update recipe";
+    })
+  .addCase(updateRecipe.fulfilled, (state, action) => {
+    const index = state.list.findIndex(item => item.id === action.payload.id);
+    if (index !== -1) {
+      state.list[index] = action.payload;
+    }  });
   },
 });
-
 export default recipesSlice;

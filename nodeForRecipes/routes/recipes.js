@@ -33,7 +33,7 @@ router.post('/', authMiddleware, (req, res) => {
         title,
         products,
         description,
-        difficulty:difficulty,
+        difficulty: difficulty,
         authorId: req.header('user-id'),
         ingredients,
         instructions,
@@ -45,11 +45,39 @@ router.post('/', authMiddleware, (req, res) => {
     if (newRecipe) {
         console.log(newRecipe.difficulty);
         res.status(201).json({ message: "Recipe added", recipe: newRecipe });
-      } else {
+    } else {
         res.status(403).json({ message: "Failed to add recipe" });
-      }
-      
-    
+    }
+
+
+});
+
+router.put('/', authMiddleware, (req, res) => {
+    const {
+        id,
+        title,
+        description,
+        difficulty,
+        products,
+        ingredients,
+        instructions } = req.body;
+
+    const db = JSON.parse(fs.readFileSync(dbPath));
+    const recipe = db.recipe.find(r => r.id === req.header('id'));
+    if (!recipe) {
+        return res.status(404).json({ message: "Recipe not found" });
+    }
+
+    recipe.title = title;
+    recipe.description = description;
+    recipe.difficulty = difficulty;
+    recipe.products = products;
+    recipe.ingredients = ingredients;
+    recipe.instructions = instructions;
+
+    fs.writeFileSync(dbPath, JSON.stringify(db, null, 2));
+
+    res.json(recipe);
 });
 
 export default router;

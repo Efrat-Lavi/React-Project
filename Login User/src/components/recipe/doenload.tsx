@@ -13,7 +13,7 @@ const Download = ({recipe} :{recipe:Recipe} ) => {
           {
             children: [
               new Paragraph({
-                children: [new TextRun(`recipe: ${recipe.title}`)],
+                children: [new TextRun(` ${recipe.title}`)],
               }),
               new Paragraph({
                 children: [new TextRun(`description: ${recipe.description}`)],

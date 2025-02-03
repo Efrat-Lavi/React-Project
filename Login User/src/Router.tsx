@@ -5,6 +5,7 @@ import AppLayout from "./components/appLayout"
 import RecipesList from "./components/recipe/recipesList"
 import AddRecipe from "./components/recipe/addRecipe"
 import RecipeDetails from "./components/recipe/recipe"
+import UpdateRecipe from "./components/recipe/updateRecipe"
 
 export const router = createBrowserRouter([
     {
@@ -16,6 +17,7 @@ export const router = createBrowserRouter([
                 // children:[{path:"/recipe/:id",element:<RecipeDetails />}]
             },
             { path: 'addRecipe', element:  <AddRecipe/>},   
-            { path: 'about', element: <About /> }]
+            { path: 'about', element: <About /> },
+            { path: 'update/:id', element: <UpdateRecipe /> }]
     }
 ])
