@@ -1,25 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-export type Recipe = {
-    id:string,
-    title: string,
-    description: string,
-    difficulty:string
-    products: string,
-    ingredients: string[]
-    instructions: string[],
-    authorId:string
-  }
-interface RecipesState {
-  list: Recipe[];
-  loading: boolean;
-  error: string | null;
-}
-const initialState: RecipesState = {
-  list: [],
-  loading: false,
-  error: null,
-};
+import Swal from "sweetalert2";
+import { Recipe } from "./recipesDef";
+import { initialState } from "./recipesDef";
+
 export const fetchData = createAsyncThunk("recipes/fetch", async (_, thunkAPI) => {
   try {
     const response = await axios.get("http://localhost:3000/api/recipes");
@@ -44,14 +28,14 @@ export const addRecipe = createAsyncThunk(
 );
 export const updateRecipe = createAsyncThunk(
   "recipes/update",
-  async ({ recipe }: { recipe: Partial<Recipe>;}, thunkAPI) => {
-    console.log(recipe);
-    
+  async ({ recipe,userId}: { recipe: Partial<Recipe>,userId:string}, thunkAPI) => {
     try {
       const response = (await axios.put("http://localhost:3000/api/recipes", recipe,
-        { headers: { 'id': '' +recipe.id} }
+        { headers: { 'user-id': '' + userId} }
       ))
-      return response.data.recipe;
+      console.log(response);
+      
+      return response.data;
     } catch (error: any) {
         console.log(error);
       return thunkAPI.rejectWithValue(error.message);
@@ -82,19 +66,23 @@ const recipesSlice = createSlice({
         state.error = typeof action.payload === "string" 
           ? action.payload 
           : action.error.message || "Error adding recipe";
+          Swal.fire({title: "Add rejected",icon: "error",draggable: true});
       })
     .addCase(addRecipe.fulfilled, (state, action) => {
       state.list.push(action.payload);
+      Swal.fire({title: "Add successfully",icon: "success",draggable: true});
     }) 
     .addCase(updateRecipe.rejected, (state, action) => {
       state.error = typeof action.payload === "string" 
         ? action.payload 
         : action.error.message || "Error update recipe";
-    })
+        Swal.fire({title: "Update rejected",icon: "error",draggable: true});
+      })
   .addCase(updateRecipe.fulfilled, (state, action) => {
     const index = state.list.findIndex(item => item.id === action.payload.id);
     if (index !== -1) {
       state.list[index] = action.payload;
+      Swal.fire({title: "Update successfully",icon: "success",draggable: true});
     }  });
   },
 });

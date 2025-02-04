@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import {  useFieldArray, Controller, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { addRecipe, updateRecipe } from '../../store/recipesSlice';
+import { updateRecipe } from '../../store/recipesSlice';
 import { AppDispatch, StoreType } from '../../store/store';
-import { userContext } from '../../App';
+import { userContext } from '../start'
 import { Container,Typography,Box,TextField,Button,IconButton,ToggleButtonGroup,ToggleButton,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -11,13 +11,15 @@ import AddIcon from '@mui/icons-material/Add';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FormData, schema } from './addRecipeDef';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Recipe } from '../../store/recipesDef';
 
 const UpdateRecipe: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const context = useContext(userContext);
   const navigate = useNavigate();
-  const { list: recipesList, loading, error } = useSelector((store: StoreType) => store.recipes);
-  const { id } = useParams<{ id: string }>();
+  const { list: recipesList, loading, error } = useSelector(
+    (store: StoreType) => store.recipes
+  ) as { list: Recipe[]; loading: boolean; error: string | null };  const { id } = useParams<{ id: string }>();
   const recipe = recipesList.find(r=>r.id==id);
   const { register, control, handleSubmit, formState: { errors },
 } = useForm<FormData>({
@@ -42,13 +44,13 @@ const UpdateRecipe: React.FC = () => {
       instructions: data.instructions.map((item) => item.step),
       difficulty: data.difficulty
     };
-    dispatch(updateRecipe({ recipe: newRecipe }));
+    dispatch(updateRecipe({ recipe: newRecipe,userId:context.user.id }));
     navigate('/recipes');
   };
   return (
     <Container maxWidth="sm" sx={{ mt: 4, p: 3, backgroundColor: '#f9f9f9', borderRadius: 2 }}>
       <Typography variant="h4" align="center" gutterBottom>
-        Add New Recipe
+        Edit Recipe
       </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Box display="flex" flexDirection="column" gap={3}>

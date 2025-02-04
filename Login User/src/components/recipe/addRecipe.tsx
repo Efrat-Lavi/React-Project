@@ -3,13 +3,13 @@ import {  useFieldArray, Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { addRecipe } from '../../store/recipesSlice';
 import { AppDispatch } from '../../store/store';
-import { userContext } from '../../App';
+import { userContext } from '../start'
 import { Container,Typography,Box,TextField,Button,IconButton,ToggleButtonGroup,ToggleButton,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import { useNavigate } from 'react-router-dom';
-import { FormData, schema } from './addRecipeDef';
+import { defaultValues, FormData, schema } from './addRecipeDef';
 import { yupResolver } from '@hookform/resolvers/yup';
 const AddRecipeForm: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -18,10 +18,7 @@ const AddRecipeForm: React.FC = () => {
   const { register, control, handleSubmit, formState: { errors },
 } = useForm<FormData>({
     resolver: yupResolver(schema),
-    defaultValues: {
-        title: '', description: '', products: '', ingredients: [{ name: '' }],
-        instructions: [{ step: '' }], difficulty: ''
-    },
+    defaultValues: defaultValues
 });
   const { fields: ingrFields, append: ingrAppend, remove: ingrRemove } = useFieldArray({ control, name: 'ingredients' });
   const { fields: instrFields, append: instrAppend, remove: instrRemove } = useFieldArray({ control, name: 'instructions' });

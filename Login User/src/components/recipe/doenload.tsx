@@ -1,6 +1,6 @@
 
 import { Button } from "@mui/material";
-import { Recipe } from "../../store/recipesSlice";
+import { Recipe } from "../../store/recipesDef";
 import DownloadRoundedIcon from "@mui/icons-material/DownloadRounded";
 import { Document, Packer, Paragraph, TextRun } from "docx";
 import { saveAs } from "file-saver";

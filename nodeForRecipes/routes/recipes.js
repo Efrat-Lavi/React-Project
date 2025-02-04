@@ -63,10 +63,19 @@ router.put('/', authMiddleware, (req, res) => {
         instructions } = req.body;
 
     const db = JSON.parse(fs.readFileSync(dbPath));
-    const recipe = db.recipe.find(r => r.id === req.header('id'));
+    // const recipe = db.recipe.find(r => r.id === req.header('user-id'));
+    const recipe = db.recipes.find(r =>{ 
+        console.log(typeof(r.id));
+        console.log(r);
+        console.log(r.id);
+        
+       return r.id === +id});
+    console.log(recipe);
+
     if (!recipe) {
         return res.status(404).json({ message: "Recipe not found" });
     }
+console.log(recipe);
 
     recipe.title = title;
     recipe.description = description;

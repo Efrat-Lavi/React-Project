@@ -22,4 +22,7 @@ export const schema: yup.ObjectSchema<FormData> = yup.object({
         .required(),
     difficulty: yup.string().required('Difficulty is required'),
 });
-
+export const defaultValues:FormData= {
+    title: '', description: '', products: '', ingredients: [{ name: '' }],
+    instructions: [{ step: '' }], difficulty: ''
+}

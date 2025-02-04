@@ -8,7 +8,7 @@ import Container from '@mui/material/Container';
 import Login from './login/login';
 import UserDetails from './login/UserDetails';
 import Update from './login/updateUser';
-import { userContext } from '../App';
+import { userContext } from './start'
 import { PersonAdd, Login as LoginIcon, Edit } from '@mui/icons-material';
 import { Avatar } from '@mui/material';
 import BorderColorRoundedIcon from '@mui/icons-material/BorderColorRounded';
@@ -61,7 +61,7 @@ const MyAppBar = () => {
                   onClick={() => { setType('UPDATE_USER'); setIsUpdateOpen(true); }}
                   variant="outlined"
                 >
-                  <Avatar sx={{ bgcolor: 'orange', mr: 2 }} onClick={() => { setType('UPDATE_USER'); setIsUpdateOpen(true); }}>
+                  <Avatar sx={{ mx: 1, bgcolor: "#FFB74D" }} onClick={() => { setType('UPDATE_USER'); setIsUpdateOpen(true); }}>
                     <BorderColorRoundedIcon />
                   </Avatar>
                 </Button>

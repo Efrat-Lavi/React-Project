@@ -36,21 +36,27 @@
       "lastName": "לביא",
       "address": "יואל 17 א' בני ברק",
       "phone": "0534156814"
+    },
+    {
+      "id": 1738621281106,
+      "email": "r0533137717@gmail.com",
+      "password": "5"
     }
   ],
   "recipes": [
     {
       "id": 1738445728194,
-      "title": "a",
+      "title": "axllfr",
       "products": "a",
-      "description": "a",
+      "description": "ccc",
       "authorId": "1738281406035",
       "ingredients": [
         "a"
       ],
       "instructions": [
         "a"
-      ]
+      ],
+      "difficulty": "Medium"
     },
     {
       "id": 1738445781504,
@@ -181,6 +187,49 @@
       "instructions": [
         "לערבב",
         "לאפות בתנור על 180"
+      ]
+    },
+    {
+      "id": 1738621679914,
+      "title": "md",
+      "products": "m",
+      "description": "m",
+      "difficulty": "Medium",
+      "authorId": "1738281406035",
+      "ingredients": [
+        "m"
+      ],
+      "instructions": [
+        "m"
+      ]
+    },
+    {
+      "id": 1738628705874,
+      "title": "צח",
+      "products": " נהבס",
+      "description": "מנהג",
+      "difficulty": "Medium",
+      "authorId": "1738281406035",
+      "ingredients": [
+        " בהב",
+        "הה "
+      ],
+      "instructions": [
+        " בה"
+      ]
+    },
+    {
+      "id": 1738630985768,
+      "title": "nhgbcv",
+      "products": "bgdvfdcx",
+      "description": "gfbvcx",
+      "difficulty": "Hard",
+      "authorId": "1738281406035",
+      "ingredients": [
+        "bgdf"
+      ],
+      "instructions": [
+        "bdzvcs"
       ]
     }
   ]

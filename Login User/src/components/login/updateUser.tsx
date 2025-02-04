@@ -1,9 +1,10 @@
 import { Close, Visibility, VisibilityOff } from "@mui/icons-material";
 import { Box, Button, Card, CardContent, FormControl, IconButton, InputAdornment, InputLabel, Modal, OutlinedInput, Stack, TextField, Typography } from "@mui/material"
 import { FormEvent, useContext, useEffect, useRef, useState } from "react"
-import { userContext } from '../../App'
+import { userContext } from '../start'
 import axios from "axios"
 import { style } from "../style/style";
+import PasswordInput from "./password";
 const Update = ({ open, onClose }: { open: boolean; onClose: () => void }) => {
     const context = useContext(userContext);
     const firstNameRef = useRef<HTMLInputElement>(null);
@@ -74,30 +75,7 @@ const Update = ({ open, onClose }: { open: boolean; onClose: () => void }) => {
                             <TextField required inputRef={emailRef} name="email" label="Email" fullWidth defaultValue={context.user.email} />
                             <TextField inputRef={phoneRef} name="phone" label="Phone" fullWidth margin="normal" defaultValue={context.user.phoneNumber} />
                             <TextField inputRef={addressRef} name="address" label="Address" fullWidth margin="normal" defaultValue={context.user.address} />
-                            <TextField inputRef={passwordRef} name="password" label="Password" fullWidth margin="normal" defaultValue={context.user.password}/>
-                            {/* <FormControl margin="normal" variant="outlined">
-                                <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-                                <OutlinedInput
-                                    id="outlined-adornment-password"
-                                    type={showPassword ? 'text' : 'password'}
-                                    endAdornment={
-                                        <InputAdornment position="end">
-                                            <IconButton
-                                                aria-label={
-                                                    showPassword ? 'hide the password' : 'display the password'
-                                                }
-                                                onClick={handleClickShowPassword}
-                                                onMouseDown={handleMouseDownPassword}
-                                                onMouseUp={handleMouseUpPassword}
-                                                edge="end" >
-                                                {showPassword ? <VisibilityOff /> : <Visibility />}
-                                            </IconButton>
-                                        </InputAdornment>
-                                    }
-                                    label="Password"
-                                    inputRef={passwordRef}
-                                    defaultValue={context.user.password} />
-                            </FormControl> */}
+                            <PasswordInput ref={passwordRef} defaultValue={context.user.password} />
                           
                             <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
                 <Button type="submit" variant="contained" sx={{ backgroundColor: "#388E3C", '&:hover': { backgroundColor: "#2E7D32" } }} fullWidth>

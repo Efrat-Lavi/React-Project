@@ -1,23 +1,23 @@
 import { Avatar, Tooltip, Typography } from "@mui/material"
 import { useContext } from "react";
-import { userContext } from "../../App";
-
+import { userContext } from '../start'
 const UserDetails = () => {
-const context = useContext(userContext);
+    const context = useContext(userContext);
 
     return (<>
 
-        {context.user&&<Tooltip title="User Avatar">
+        <Typography sx={{ mx: 2, fontWeight: 'bold', color: 'white' }}>
+            Hello {context.user.firstName != '' ? <>{context.user.firstName}</> : <>user</>}
+        </Typography>
+        {context.user && <Tooltip title="User Avatar">
             <Avatar
                 alt={context.user.firstName}
                 src="/static/images/avatar/2.jpg"
-                sx={{ mx: 2 }}
+                sx={{ mx: 1, bgcolor: "#FFB74D" }}
             />
         </Tooltip>}
-        <Typography sx={{ mx: 2, fontWeight: 'bold', color: 'white' }}>
-        Hello {context.user.firstName!=''?  <>{context.user.firstName}</>:<>user</>}
-        </Typography>
-        
+
+
     </>)
 }
 export default UserDetails
