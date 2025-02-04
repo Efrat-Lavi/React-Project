@@ -1,8 +1,8 @@
 import { Avatar, Tooltip, Typography } from "@mui/material"
 import { useContext } from "react";
-import { userContext } from '../start'
+import { UserContext } from '../start'
 const UserDetails = () => {
-    const context = useContext(userContext);
+    const context = useContext(UserContext);
 
     return (<>
 

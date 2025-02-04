@@ -3,7 +3,7 @@ import {  useFieldArray, Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { addRecipe } from '../../store/recipesSlice';
 import { AppDispatch } from '../../store/store';
-import { userContext } from '../start'
+import { UserContext } from '../start'
 import { Container,Typography,Box,TextField,Button,IconButton,ToggleButtonGroup,ToggleButton,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -13,7 +13,7 @@ import { defaultValues, FormData, schema } from './addRecipeDef';
 import { yupResolver } from '@hookform/resolvers/yup';
 const AddRecipeForm: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
-  const context = useContext(userContext);
+  const context = useContext(UserContext);
   const navigate = useNavigate();
   const { register, control, handleSubmit, formState: { errors },
 } = useForm<FormData>({

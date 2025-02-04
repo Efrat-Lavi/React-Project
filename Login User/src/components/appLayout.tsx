@@ -1,12 +1,13 @@
 
 import { useContext } from "react";
 import { Link, Outlet } from "react-router";
-import { userContext } from './start'
+import { UserContext } from './start'
 import { Box, Stack, Typography } from "@mui/material";
 import { Home, Info, RestaurantMenu, AddCircle } from "@mui/icons-material";
+import MyAppBar from "./myAppBar";
 
 const AppLayout = () => {
-  const context = useContext(userContext);
+  const context = useContext(UserContext);
   const menuItems = [
     { text: "Home", icon: <Home />, path: "/" },
     { text: "About", icon: <Info />, path: "/about" },
@@ -33,10 +34,11 @@ const AppLayout = () => {
 
   return (
     <>
+    
       <Box
         component="nav"
         sx={{
-          position: "absolute",
+          position: "relative",
           top: "80px",
           right: 20,
           backgroundColor: "#ffffff",
@@ -44,6 +46,7 @@ const AppLayout = () => {
           borderRadius: "8px",
           padding: "10px 20px",
           width: "calc(100% - 40px)",
+          zIndex:1000
         }}
       >
         <Stack
@@ -79,12 +82,14 @@ const AppLayout = () => {
 
       <Box
         sx={{
-          paddingTop: "100px",
+          // position: "relative",
+          paddingTop: "50px",
           minHeight: "calc(100vh - 100px)",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
           textAlign: "center",
+          // zIndex: -1,
         }}
       >
         <Outlet />

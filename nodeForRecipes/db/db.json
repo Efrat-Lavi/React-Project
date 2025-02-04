@@ -41,6 +41,15 @@
       "id": 1738621281106,
       "email": "r0533137717@gmail.com",
       "password": "5"
+    },
+    {
+      "id": 1738706686596,
+      "email": "dr0504149105@gmail.com",
+      "password": "123",
+      "firstName": "אבא",
+      "lastName": "",
+      "address": "",
+      "phone": ""
     }
   ],
   "recipes": [

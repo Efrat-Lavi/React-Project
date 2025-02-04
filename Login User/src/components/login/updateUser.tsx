@@ -1,12 +1,12 @@
 import { Close, Visibility, VisibilityOff } from "@mui/icons-material";
 import { Box, Button, Card, CardContent, FormControl, IconButton, InputAdornment, InputLabel, Modal, OutlinedInput, Stack, TextField, Typography } from "@mui/material"
 import { FormEvent, useContext, useEffect, useRef, useState } from "react"
-import { userContext } from '../start'
+import { UserContext } from '../start'
 import axios from "axios"
-import { style } from "../style/style";
+import { style } from "../../style/style";
 import PasswordInput from "./password";
 const Update = ({ open, onClose }: { open: boolean; onClose: () => void }) => {
-    const context = useContext(userContext);
+    const context = useContext(UserContext);
     const firstNameRef = useRef<HTMLInputElement>(null);
     const lastNameRef = useRef<HTMLInputElement>(null);
     const emailRef = useRef<HTMLInputElement>(null);

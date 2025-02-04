@@ -3,7 +3,7 @@ import {  useFieldArray, Controller, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateRecipe } from '../../store/recipesSlice';
 import { AppDispatch, StoreType } from '../../store/store';
-import { userContext } from '../start'
+import { UserContext } from '../start'
 import { Container,Typography,Box,TextField,Button,IconButton,ToggleButtonGroup,ToggleButton,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -15,7 +15,7 @@ import { Recipe } from '../../store/recipesDef';
 
 const UpdateRecipe: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
-  const context = useContext(userContext);
+  const context = useContext(UserContext);
   const navigate = useNavigate();
   const { list: recipesList, loading, error } = useSelector(
     (store: StoreType) => store.recipes

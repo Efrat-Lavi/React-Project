@@ -6,9 +6,9 @@ import { useContext, useEffect, useState } from "react";
 import { Grid, Card, CardContent, Typography, CardActionArea, Box, Button } from "@mui/material";
 import RecipeDetails from "./recipe";
 import EditIcon from '@mui/icons-material/Edit';
-import "../style/style.css";
+import "../../style/style.css"
 import DwonLoad from './doenload';
-import { userContext } from '../start'
+import { UserContext } from '../start'
 import { useNavigate } from "react-router-dom";
 import { Recipe } from "../../store/recipesDef";
 
@@ -16,7 +16,7 @@ const RecipesList = () => {
   const { list: recipesList, loading, error } = useSelector((store: StoreType) => store.recipes);
   const dispatch: AppDispatch = useDispatch();
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
-  const context = useContext(userContext);
+  const context = useContext(UserContext);
   const navigate = useNavigate();
   useEffect(() => {
     dispatch(fetchData());

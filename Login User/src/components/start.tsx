@@ -1,4 +1,5 @@
 
+
 import { RouterProvider } from 'react-router-dom'
 import MyAppBar from '../components/myAppBar'
 import { router } from '../Router'
@@ -7,10 +8,11 @@ import store from '../store/store'
 import { createContext, Dispatch, useReducer } from 'react'
 import User, { Action, UserType } from '../components/User'
 
-const userDefault: UserType ={
-  id:'',firstName: '', lastName: '', email: '', password: '', address: '', phoneNumber: ''}
+const userDefault: UserType = {
+  id: '', firstName: '', lastName: '', email: '', password: '', address: '', phoneNumber: ''
+}
 
- export const userContext = createContext<{
+export const UserContext = createContext<{
   user: UserType;
   userDispatch: Dispatch<Action>;
 }>
@@ -20,15 +22,17 @@ const userDefault: UserType ={
   })
 function Start() {
   const [user, userDispatch] = useReducer(User, userDefault);
- 
+
+
   return (
     <>
-    <userContext.Provider value={{ user, userDispatch }}>
-    <Provider store={store}>
-    <MyAppBar/>
-    <RouterProvider router={router}/>
-    </Provider>
-    </userContext.Provider>
+
+      <UserContext value={{ user, userDispatch }}>
+        <Provider store={store}>
+          <MyAppBar />
+          <RouterProvider router={router} />
+        </Provider>
+      </UserContext>
 
     </>
   )

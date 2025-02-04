@@ -3,13 +3,13 @@ import {
   Box, Button, Card, CardContent, IconButton, Modal, Stack, TextField, Typography
 } from "@mui/material";
 import { FormEvent, useContext, useEffect, useRef } from "react";
-import { userContext } from '../start'
+import { UserContext } from '../start'
 import axios from "axios";
 import Swal from "sweetalert2";
 import PasswordInput from "./password";
 
 const Login = ({ open, onClose, typeAction }: { open: boolean; onClose: () => void; typeAction: any }) => {
-  const context = useContext(userContext);
+  const context = useContext(UserContext);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 

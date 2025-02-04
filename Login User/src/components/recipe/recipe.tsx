@@ -7,7 +7,7 @@ import BorderColorRoundedIcon from '@mui/icons-material/BorderColorRounded';
 import DehazeRoundedIcon from '@mui/icons-material/DehazeRounded';
 import { Recipe } from "../../store/recipesDef";
 import { useContext } from 'react';
-import { userContext } from '../start'
+import { UserContext } from '../start'
 import { useNavigate } from 'react-router-dom';
 const RecipeDetails = ({ recipe }: { recipe: Recipe }) => {
 

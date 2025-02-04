@@ -8,13 +8,13 @@ import Container from '@mui/material/Container';
 import Login from './login/login';
 import UserDetails from './login/UserDetails';
 import Update from './login/updateUser';
-import { userContext } from './start'
+import { UserContext } from './start'
 import { PersonAdd, Login as LoginIcon, Edit } from '@mui/icons-material';
 import { Avatar } from '@mui/material';
 import BorderColorRoundedIcon from '@mui/icons-material/BorderColorRounded';
 
 const MyAppBar = () => {
-  const context = useContext(userContext);
+  const context = useContext(UserContext);
   const [type, setType] = useState('CREATE_USER');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -30,7 +30,7 @@ const MyAppBar = () => {
 
   return (
     <>
-      <AppBar position="static" >
+      <AppBar position="fixed" >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
@@ -71,7 +71,6 @@ const MyAppBar = () => {
           </Toolbar>
         </Container>
       </AppBar>
-
       {<Login open={isLoginOpen} onClose={handleCloseLogin} typeAction={type} />}
       {<Update open={isUpdateOpen} onClose={handleCloseUpdate}></Update>}
     </>
