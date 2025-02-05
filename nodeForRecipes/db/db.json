@@ -52,194 +52,221 @@
       "phone": ""
     }
   ],
-  "recipes": [
-    {
-      "id": 1738445728194,
-      "title": "axllfr",
-      "products": "a",
-      "description": "ccc",
-      "authorId": "1738281406035",
-      "ingredients": [
-        "a"
-      ],
-      "instructions": [
-        "a"
-      ],
-      "difficulty": "Medium"
-    },
-    {
-      "id": 1738445781504,
-      "title": "b",
-      "products": "b",
-      "description": "b",
-      "authorId": "1738281406035",
-      "ingredients": [
-        "b"
-      ],
-      "instructions": [
-        "b"
-      ]
-    },
-    {
-      "id": 1738445924650,
-      "title": "c",
-      "products": "c",
-      "description": "c",
-      "authorId": "1738281406035",
-      "ingredients": [
-        "c"
-      ],
-      "instructions": [
-        "c"
-      ]
-    },
-    {
-      "id": 1738445962321,
-      "title": "d",
-      "products": "d",
-      "description": "d",
-      "difficulty": "Hard",
-      "authorId": "1738281406035",
-      "ingredients": [
-        "d"
-      ],
-      "instructions": [
-        "d"
-      ]
-    },
-    {
-      "id": 1738446252927,
-      "title": "e",
-      "products": "e",
-      "description": "e",
-      "authorId": "1738281406035",
-      "ingredients": [
-        "e"
-      ],
-      "instructions": [
-        "e"
-      ]
-    },
-    {
-      "id": 1738446287152,
-      "title": "f",
-      "products": "f",
-      "description": "f",
-      "authorId": "1738281406035",
-      "ingredients": [
-        "f"
-      ],
-      "instructions": [
-        "f"
-      ]
-    },
-    {
-      "id": 1738446789702,
-      "title": "g",
-      "products": "g",
-      "description": "g",
-      "difficulty": "Medium",
-      "authorId": "1738281406035",
-      "ingredients": [
-        "g"
-      ],
-      "instructions": [
-        "g"
-      ]
-    },
-    {
-      "id": 1738446961896,
-      "title": "h",
-      "products": "h",
-      "description": "h",
-      "difficulty": "Easy",
-      "authorId": "1738281406035",
-      "ingredients": [
-        "h"
-      ],
-      "instructions": [
-        "h"
-      ]
-    },
-    {
-      "id": 1738449415710,
-      "title": "עוגת שוקולד",
-      "products": "קערה",
-      "description": "טעימה מאד",
-      "difficulty": "Medium",
-      "authorId": "1738281406035",
-      "ingredients": [
-        "קמח",
-        "סוכר",
-        "שמן",
-        "קקאו",
-        "ביצים"
-      ],
-      "instructions": [
-        "לערבב",
-        "לאפות בתנור על 180"
-      ]
-    },
-    {
-      "id": 1738462550496,
-      "title": "עוגת דבש",
-      "products": "מיקסר",
-      "description": "מוצלחת מאד לראש השנה",
-      "difficulty": "Medium",
-      "authorId": "1738281406035",
-      "ingredients": [
-        "קמח",
-        "דבש",
-        "שמן",
-        "ביצים"
-      ],
-      "instructions": [
-        "לערבב",
-        "לאפות בתנור על 180"
-      ]
-    },
-    {
-      "id": 1738621679914,
-      "title": "md",
-      "products": "m",
-      "description": "m",
-      "difficulty": "Medium",
-      "authorId": "1738281406035",
-      "ingredients": [
-        "m"
-      ],
-      "instructions": [
-        "m"
-      ]
-    },
-    {
-      "id": 1738628705874,
-      "title": "צח",
-      "products": " נהבס",
-      "description": "מנהג",
-      "difficulty": "Medium",
-      "authorId": "1738281406035",
-      "ingredients": [
-        " בהב",
-        "הה "
-      ],
-      "instructions": [
-        " בה"
-      ]
-    },
-    {
-      "id": 1738630985768,
-      "title": "nhgbcv",
-      "products": "bgdvfdcx",
-      "description": "gfbvcx",
-      "difficulty": "Hard",
-      "authorId": "1738281406035",
-      "ingredients": [
-        "bgdf"
-      ],
-      "instructions": [
-        "bdzvcs"
-      ]
-    }
-  ]
+  "recipes": 
+    [
+      {
+        "id": 1738462550496,
+        "title": "Honey Cake",
+        "products": "Mixer",
+        "description": "A delightful cake perfect for Rosh Hashanah.",
+        "difficulty": "Medium",
+        "authorId": "1738281406035",
+        "ingredients": [
+          "Flour",
+          "Honey",
+          "Oil",
+          "Eggs"
+        ],
+        "instructions": [
+          "Mix the ingredients.",
+          "Bake in the oven at 180°C."
+        ]
+      },
+      {
+        "id": 1738462550497,
+        "title": "Chocolate Chip Cookies",
+        "products": "Oven",
+        "description": "Classic cookies with a rich chocolate flavor.",
+        "difficulty": "Easy",
+        "authorId": "1738281406036",
+        "ingredients": [
+          "Flour",
+          "Sugar",
+          "Butter",
+          "Chocolate chips",
+          "Eggs"
+        ],
+        "instructions": [
+          "Cream the butter and sugar.",
+          "Add eggs and mix.",
+          "Fold in the flour and chocolate chips.",
+          "Scoop onto a baking sheet and bake at 180°C for 10 minutes."
+        ]
+      },
+      {
+        "id": 1738462550498,
+        "title": "Spaghetti Bolognese",
+        "products": "Stove",
+        "description": "A hearty Italian pasta dish with a rich meat sauce.",
+        "difficulty": "Medium",
+        "authorId": "1738281406037",
+        "ingredients": [
+          "Spaghetti",
+          "Ground beef",
+          "Tomato sauce",
+          "Onion",
+          "Garlic",
+          "Carrot",
+          "Celery",
+          "Olive oil",
+          "Parmesan cheese"
+        ],
+        "instructions": [
+          "Sauté onion, garlic, carrot, and celery in olive oil.",
+          "Add ground beef and cook until browned.",
+          "Pour in tomato sauce and simmer for 30 minutes.",
+          "Serve over cooked spaghetti and top with Parmesan cheese."
+        ]
+      },
+      {
+        "id": 1738462550499,
+        "title": "Caesar Salad",
+        "products": "None",
+        "description": "A classic salad with crisp lettuce and creamy dressing.",
+        "difficulty": "Easy",
+        "authorId": "1738281406038",
+        "ingredients": [
+          "Romaine lettuce",
+          "Croutons",
+          "Parmesan cheese",
+          "Caesar dressing"
+        ],
+        "instructions": [
+          "Toss lettuce with croutons and Parmesan.",
+          "Drizzle with Caesar dressing and serve."
+        ]
+      },
+      {
+        "id": 1738462550500,
+        "title": "Chicken Curry",
+        "products": "Stove",
+        "description": "A flavorful curry with tender chicken pieces.",
+        "difficulty": "Medium",
+        "authorId": "1738281406039",
+        "ingredients": [
+          "Chicken breast",
+          "Curry powder",
+          "Coconut milk",
+          "Onion",
+          "Garlic",
+          "Ginger",
+          "Tomato",
+          "Rice"
+        ],
+        "instructions": [
+          "Sauté onion, garlic, and ginger.",
+          "Add chicken and cook until browned.",
+          "Stir in curry powder and tomato.",
+          "Pour in coconut milk and simmer for 20 minutes.",
+          "Serve with rice."
+        ]
+      },
+      {
+        "id": 1738462550501,
+        "title": "Vegetable Stir-Fry",
+        "products": "Wok",
+        "description": "A quick and healthy mix of sautéed vegetables.",
+        "difficulty": "Easy",
+        "authorId": "1738281406040",
+        "ingredients": [
+          "Bell peppers",
+          "Broccoli",
+          "Carrot",
+          "Snow peas",
+          "Soy sauce",
+          "Ginger",
+          "Garlic",
+          "Sesame oil"
+        ],
+        "instructions": [
+          "Heat sesame oil in a wok.",
+          "Add garlic and ginger, sauté briefly.",
+          "Add vegetables and stir-fry until tender-crisp.",
+          "Pour in soy sauce and toss to coat."
+        ]
+      },
+      {
+        "id": 1738462550502,
+        "title": "Beef Tacos",
+        "products": "Stove",
+        "description": "Spicy ground beef served in soft tortillas.",
+        "difficulty": "Medium",
+        "authorId": "1738281406041",
+        "ingredients": [
+          "Ground beef",
+          "Taco seasoning",
+          "Tortillas",
+          "Lettuce",
+          "Tomato",
+          "Cheddar cheese",
+          "Sour cream"
+        ],
+        "instructions": [
+          "Cook ground beef with taco seasoning.",
+          "Warm tortillas.",
+          "Assemble tacos with beef, lettuce, tomato, cheese, and sour cream."
+        ]
+      },
+      {
+        "id": 1738462550503,
+        "title": "Pancakes",
+        "products": "Stove",
+        "description": "Fluffy pancakes perfect for breakfast.",
+        "difficulty": "Easy",
+        "authorId": "1738281406042",
+        "ingredients": [
+          "Flour",
+          "Milk",
+          "Eggs",
+          "Baking powder",
+          "Sugar",
+          "Butter"
+        ],
+        "instructions": [
+          "Mix dry ingredients.",
+          "Add wet ingredients and stir until smooth.",
+          "Pour batter onto a heated griddle.",
+          "Cook until bubbles form, then flip."
+        ]
+      },
+      {
+        "id": 1738462550504,
+        "title": "Grilled Cheese Sandwich",
+        "products": "Stove",
+        "description": "A classic sandwich with melted cheese.",
+        "difficulty": "Easy",
+        "authorId": "1738281406043",
+        "ingredients": [
+          "Bread",
+          "Cheddar cheese",
+          "Butter"
+        ],
+        "instructions": [
+          "Butter one side of each bread slice.",
+          "Place cheese between slices, buttered sides out.",
+          "Grill on medium heat until golden brown."
+        ]
+      },
+      {
+        "id": 1738462550505,
+        "title": "Apple Pie",
+        "products": "Oven",
+        "description": "A traditional dessert with a flaky crust.",
+        "difficulty": "Medium",
+        "authorId": "1738281406044",
+        "ingredients": [
+          "Apples",
+          "Sugar",
+          "Cinnamon",
+          "Pie crust"
+        ],
+        "instructions": [
+          "Mix sliced apples with sugar and cinnamon.",
+          "Place in pie crust and cover with top crust.",
+          "Bake at 180°C for 45 minutes."
+        ]
+      }
+    ]
+   
+  
 }

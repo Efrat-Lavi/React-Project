@@ -1,0 +1,17 @@
+export const images = [
+    '/images/a.jpg',
+    '/images/b.jpg',
+    '/images/c.jpg',
+    '/images/d.jpg',
+    '/images/f.jpg',
+    '/images/g.jpg',
+    '/images/j.jpg',
+    '/images/k.jpg',
+    '/images/l.jpg',
+    '/images/m.jpg',
+    '/images/n.jpg',
+    '/images/o.jpg',
+    '/images/p.jpg',
+    '/images/q.jpg',
+    '/images/r.jpg',
+  ];

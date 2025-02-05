@@ -43,7 +43,7 @@ const Download = ({recipe} :{recipe:Recipe} ) => {
   };
 
   return (
-    <Button onClick={handleDownload}>
+    <Button sx={{ minWidth: 'auto', mr: 2 }} onClick={handleDownload}>
       <DownloadRoundedIcon />
     </Button>
   );

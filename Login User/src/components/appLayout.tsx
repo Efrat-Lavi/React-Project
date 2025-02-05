@@ -4,7 +4,6 @@ import { Link, Outlet } from "react-router";
 import { UserContext } from './start'
 import { Box, Stack, Typography } from "@mui/material";
 import { Home, Info, RestaurantMenu, AddCircle } from "@mui/icons-material";
-import MyAppBar from "./myAppBar";
 
 const AppLayout = () => {
   const context = useContext(UserContext);
@@ -39,12 +38,12 @@ const AppLayout = () => {
         component="nav"
         sx={{
           position: "relative",
-          top: "80px",
+          top: "60px",
           right: 20,
           backgroundColor: "#ffffff",
           boxShadow: "0 4px 10px rgba(0, 0, 0, 0.15)",
           borderRadius: "8px",
-          padding: "10px 20px",
+          padding: "2px 20px",
           width: "calc(100% - 40px)",
           zIndex:1000
         }}
@@ -82,14 +81,12 @@ const AppLayout = () => {
 
       <Box
         sx={{
-          // position: "relative",
           paddingTop: "50px",
           minHeight: "calc(100vh - 100px)",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          textAlign: "center",
-          // zIndex: -1,
+          textAlign: "center"
         }}
       >
         <Outlet />
@@ -97,5 +94,4 @@ const AppLayout = () => {
     </>
   );
 };
-
 export default AppLayout;

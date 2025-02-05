@@ -24,7 +24,6 @@ const Login = ({ open, onClose, typeAction }: { open: boolean; onClose: () => vo
         email: emailRef.current?.value,
         password: passwordRef.current?.value,
       });
-
       context?.userDispatch({
         type: "CREATE_USER",
         data: {
@@ -60,7 +59,6 @@ const Login = ({ open, onClose, typeAction }: { open: boolean; onClose: () => vo
     }
     onClose();
   };
-
   return (
     <Modal open={open} onClose={onClose}>
       <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh" }}>
@@ -100,5 +98,4 @@ const Login = ({ open, onClose, typeAction }: { open: boolean; onClose: () => vo
     </Modal>
   );
 };
-
 export default Login;

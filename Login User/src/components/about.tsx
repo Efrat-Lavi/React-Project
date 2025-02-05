@@ -1,8 +1,4 @@
-// // const About = () => {
-// //     return(
-// //     <div>About</div>)
-// // }
-// // export default About
+
 import { Box, Container, Typography, Grid, Avatar } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import InfoIcon from "@mui/icons-material/Info";
@@ -75,63 +71,3 @@ const About= () => {
 };
 
 export default About;
-/*
-import React from 'react';
-import { Container, Typography, Box, useTheme } from '@mui/material';
-import { useInView } from 'react-intersection-observer';
-
-const About = () => {
-  const theme = useTheme();
-
-  const Section = ({ children }:{children:any}) => {
-    const { ref, inView } = useInView({
-      triggerOnce: true,
-      threshold: 0.1,
-    });
-
-    return (
-      <Box
-        ref={ref}
-        sx={{
-          opacity: inView ? 1 : 0,
-          transform: inView ? 'translateX(0)' : 'translateX(-100px)',
-          transition: 'all 0.6s ease-out',
-          mb: 4,
-        }}
-      >
-        {children}
-      </Box>
-    );
-  };
-
-  return (
-    <Container maxWidth="md" sx={{ mt: 8, mb: 8 }}>
-      <Typography
-        variant="h2"
-        align="center"
-        gutterBottom
-        sx={{ fontWeight: 'bold', color: theme.palette.primary.main }}
-      >
-        אודות אתר המתכונים שלנו
-      </Typography>
-      <Section>
-        <Typography variant="body1" paragraph>
-          ברוכים הבאים לאתר המתכונים שלנו! כאן תוכלו למצוא מגוון רחב של מתכונים טעימים וקלים להכנה, המתאימים לכל אירוע וטעם.
-        </Typography>
-      </Section>
-      <Section>
-        <Typography variant="body1" paragraph>
-          הצוות שלנו משקיע מאמצים רבים כדי להביא לכם את המתכונים המובחרים ביותר, עם הוראות ברורות ותמונות מרהיבות, כדי שתוכלו ליהנות מחוויית בישול מושלמת.
-        </Typography>
-      </Section>
-      <Section>
-        <Typography variant="body1" paragraph>
-          אנו מאמינים שבישול הוא אמנות, וכל אחד יכול להיות שף במטבח שלו. הצטרפו אלינו למסע קולינרי מרתק וגלו טעמים חדשים ומרגשים.
-        </Typography>
-      </Section>
-    </Container>
-  );
-};
-
-export default About;
-*/

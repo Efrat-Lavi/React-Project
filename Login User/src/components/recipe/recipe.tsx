@@ -1,35 +1,36 @@
 import { Typography, Box, Divider, ListItem, ListItemText, Paper, Chip, Avatar, List, Button } from '@mui/material';
 import { RestaurantMenu, Kitchen } from '@mui/icons-material';
-import SignalCellularAlt1BarIcon from '@mui/icons-material/SignalCellularAlt1Bar';
-import SignalCellularAlt2BarIcon from '@mui/icons-material/SignalCellularAlt2Bar';
-import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt';
+
 import BorderColorRoundedIcon from '@mui/icons-material/BorderColorRounded';
 import DehazeRoundedIcon from '@mui/icons-material/DehazeRounded';
 import { Recipe } from "../../store/recipesDef";
-import { useContext } from 'react';
-import { UserContext } from '../start'
-import { useNavigate } from 'react-router-dom';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { useState } from 'react';
+import Download from './doenload';
+import { getDifficultyIcon } from './addRecipeDef';
 const RecipeDetails = ({ recipe }: { recipe: Recipe }) => {
+  const [liked, setLiked] = useState(false);
 
-  const getDifficultyIcon = (difficulty: string) => {
-    switch (difficulty) {
-      case 'Easy':
-        return <Avatar sx={{ color: 'green', mr: 2 }}><SignalCellularAlt1BarIcon /></Avatar>;
-      case 'Medium':
-        return <Avatar sx={{ color: 'orange', mr: 2 }}><SignalCellularAlt2BarIcon /></Avatar>;
-      case 'Hard':
-        return <Avatar sx={{ color: 'red', mr: 2 }}><SignalCellularAltIcon /></Avatar>;
-      default:
-        return null;
-    }
+  const toggleLike = () => {
+    setLiked(!liked);
   };
+
   return (
-    <Paper sx={{ p: 3, m: 2, boxShadow: 5, backgroundColor: '#f9f9f9', borderRadius: '16px', maxWidth: '50%', margin: '0 auto', }}>
-      <Box sx={{ display: 'flex', float: 'left' }}> </Box>
-     
-      <Typography variant="h4" sx={{ color: '#3f51b5' }} gutterBottom>
-        {recipe.title}
-      </Typography>
+    <Paper sx={{direction:"ltr", p: 3, m: 2, boxShadow: 5, backgroundColor: '#f9f9f9', borderRadius: '16px', maxWidth: '50%', margin: '0 auto' }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+        <Download recipe={recipe} />
+        <Typography variant="h4" sx={{ backgroundColor: '#FFB74D', padding: '8px 16px', borderRadius: '8px', fontFamily: 'serif', fontWeight: 'bold', textAlign: 'center', width: '100%' }} gutterBottom>
+          {recipe.title}
+        </Typography>
+        <Button onClick={toggleLike} sx={{ minWidth: 'auto', mr: 2 }}>
+          {liked ? (
+            <FavoriteIcon sx={{ color: '#1976d2' }} />
+          ) : (
+            <FavoriteBorderIcon sx={{ color: '#1976d2' }} />
+          )}
+        </Button>
+      </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
         {getDifficultyIcon(recipe.difficulty)}
         <Chip label={recipe.difficulty} color="primary" variant="outlined" sx={{ fontWeight: 'bold', ml: 2 }} />
@@ -37,64 +38,60 @@ const RecipeDetails = ({ recipe }: { recipe: Recipe }) => {
       <Divider sx={{ my: 2 }} />
       <List>
         <ListItem disableGutters>
-          <Avatar sx={{ bgcolor: '#FFB74D', mr: 2 }}>
-            <RestaurantMenu />
-          </Avatar>
-          <ListItemText primary={<Typography variant="body1">{recipe.description}</Typography>} />
+          <Box sx={{ display: 'flex'}}>
+            <Avatar sx={{ bgcolor: '#FFB74D', mr: 1 }}><RestaurantMenu /></Avatar>
+            <ListItemText primary={<Typography variant="body1">{recipe.description}</Typography>} />
+          </Box>
         </ListItem>
         <Divider sx={{ my: 1 }} />
         <ListItem disableGutters>
-          <Avatar sx={{ bgcolor: '#FFB74D', mr: 2 }}>
-            <Kitchen />
-          </Avatar>
-          <ListItemText primary={
-            <>
-              <Typography variant="h6" sx={{ color: '#1976d2' }}>
-                Products
-              </Typography>
-              <Typography variant="body1">{recipe.products}</Typography>
-            </>
-          } />
+          <Box sx={{ display: 'flex'}}>
+            <Avatar sx={{ bgcolor: '#FFB74D', mr: 1 }}>
+              <Kitchen />
+            </Avatar>
+            <ListItemText primary={
+              <>
+                <Typography variant="h6" sx={{ color: '#1976d2' }}>Products</Typography>
+                <Typography variant="body1">{recipe.products}</Typography></>} />
+          </Box>
         </ListItem>
         <Divider sx={{ my: 1 }} />
         <ListItem disableGutters>
-          <Avatar sx={{ bgcolor: '#FFB74D', mr: 2 }}>
-            <DehazeRoundedIcon />
-          </Avatar>
-          <ListItemText primary={
-            <>
-              <Typography variant="h6" sx={{ color: '#1976d2' }}>
-                Ingredients
-              </Typography>
-              <List sx={{ direction: 'ltr', textAlign: 'left' }}>
-                {recipe.ingredients.map((ingredient, index) => (
-                  <ListItem key={index} disableGutters>
-                    <ListItemText primary={`• ${ingredient}`} />
-                  </ListItem>
-                ))}
-              </List>
-            </>
-          } />
+          <Box sx={{ display: 'flex' }}>
+            <Avatar sx={{ bgcolor: '#FFB74D', mr: 1 }}>
+              <DehazeRoundedIcon />
+            </Avatar>
+            <ListItemText primary={
+              <>
+                <Typography variant="h6" sx={{ color: '#1976d2' }}> Ingredients</Typography>
+                <List sx={{ direction: 'ltr', textAlign: 'left' }}>
+                  {recipe.ingredients.map((ingredient, index) => (
+                    <ListItem key={index} disableGutters>
+                      <ListItemText primary={`• ${ingredient}`} />
+                    </ListItem>
+                  ))}</List> </> } /></Box>
         </ListItem>
         <Divider sx={{ my: 1 }} />
         <ListItem disableGutters>
-          <Avatar sx={{ bgcolor: '#FFB74D', mr: 2 }}>
-            <BorderColorRoundedIcon />
-          </Avatar>
-          <ListItemText primary={
-            <>
-              <Typography variant="h6" sx={{ color: '#1976d2' }}>
-                Instructions
-              </Typography>
-              <List sx={{ direction: 'ltr', textAlign: 'left' }}>
-                {recipe.instructions.map((instruction, index) => (
-                  <ListItem key={index} disableGutters>
-                    <ListItemText primary={`• ${instruction}`} />
-                  </ListItem>
-                ))}
-              </List>
-            </>
-          } />
+          <Box sx={{ display: 'flex' }}>
+            <Avatar sx={{ bgcolor: '#FFB74D', mr: 1 }}>
+              <BorderColorRoundedIcon />
+            </Avatar>
+            <ListItemText primary={
+              <>
+                <Typography variant="h6" sx={{ color: '#1976d2' }}>
+                  Instructions
+                </Typography>
+                <List sx={{ direction: 'ltr', textAlign: 'left' }}>
+                  {recipe.instructions.map((instruction, index) => (
+                    <ListItem key={index} disableGutters>
+                      <ListItemText primary={`• ${instruction}`} />
+                    </ListItem>
+                  ))}
+                </List>
+              </>
+            } />
+          </Box>
         </ListItem>
       </List>
     </Paper>

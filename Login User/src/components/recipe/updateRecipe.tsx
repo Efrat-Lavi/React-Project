@@ -12,7 +12,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { FormData, schema } from './addRecipeDef';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Recipe } from '../../store/recipesDef';
-
 const UpdateRecipe: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const context = useContext(UserContext);
@@ -28,13 +27,11 @@ const UpdateRecipe: React.FC = () => {
         title: recipe?.title, description: recipe?.description, products: recipe?.products,
         ingredients: recipe?.ingredients.map(i=>({name:i}))
         ,instructions: recipe?.instructions.map(i=>({step:i})), difficulty: recipe?.difficulty
-    },
-});
+      },});
   const { fields: ingrFields, append: ingrAppend, remove: ingrRemove } = useFieldArray({ control, name: 'ingredients' });
   const { fields: instrFields, append: instrAppend, remove: instrRemove } = useFieldArray({ control, name: 'instructions' });
   const onSubmit = (data: FormData) => {
     console.log(id);
-    
     const newRecipe = {
         id:id,
       title: data.title,

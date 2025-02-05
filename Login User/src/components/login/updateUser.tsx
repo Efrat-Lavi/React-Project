@@ -1,9 +1,8 @@
-import { Close, Visibility, VisibilityOff } from "@mui/icons-material";
-import { Box, Button, Card, CardContent, FormControl, IconButton, InputAdornment, InputLabel, Modal, OutlinedInput, Stack, TextField, Typography } from "@mui/material"
-import { FormEvent, useContext, useEffect, useRef, useState } from "react"
+import { Close } from "@mui/icons-material";
+import { Box, Button, Card, CardContent, IconButton,  Modal, Stack, TextField, Typography } from "@mui/material"
+import { FormEvent, useContext, useEffect, useRef } from "react"
 import { UserContext } from '../start'
 import axios from "axios"
-import { style } from "../../style/style";
 import PasswordInput from "./password";
 const Update = ({ open, onClose }: { open: boolean; onClose: () => void }) => {
     const context = useContext(UserContext);
@@ -48,14 +47,6 @@ const Update = ({ open, onClose }: { open: boolean; onClose: () => void }) => {
                 alert('user not found')
         }
     }
-    const [showPassword, setShowPassword] = useState(false);
-    const handleClickShowPassword = () => setShowPassword(!showPassword);
-    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
-    };
-    const handleMouseUpPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
-    };
     return (<>
         <Modal open={open} onClose={onClose}>
             <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh" }}>

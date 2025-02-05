@@ -9,7 +9,7 @@ import Login from './login/login';
 import UserDetails from './login/UserDetails';
 import Update from './login/updateUser';
 import { UserContext } from './start'
-import { PersonAdd, Login as LoginIcon, Edit } from '@mui/icons-material';
+import { PersonAdd, Login as LoginIcon } from '@mui/icons-material';
 import { Avatar } from '@mui/material';
 import BorderColorRoundedIcon from '@mui/icons-material/BorderColorRounded';
 

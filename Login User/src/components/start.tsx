@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'
 import store from '../store/store'
 import { createContext, Dispatch, useReducer } from 'react'
 import User, { Action, UserType } from '../components/User'
+import Footer from './footer'
 
 const userDefault: UserType = {
   id: '', firstName: '', lastName: '', email: '', password: '', address: '', phoneNumber: ''
@@ -33,7 +34,7 @@ function Start() {
           <RouterProvider router={router} />
         </Provider>
       </UserContext>
-
+<Footer/>
     </>
   )
 }
