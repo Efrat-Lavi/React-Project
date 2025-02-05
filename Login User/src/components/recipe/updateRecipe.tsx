@@ -32,14 +32,10 @@ const UpdateRecipe: React.FC = () => {
   const { fields: instrFields, append: instrAppend, remove: instrRemove } = useFieldArray({ control, name: 'instructions' });
   const onSubmit = (data: FormData) => {
     console.log(id);
-    const newRecipe = {
-        id:id,
-      title: data.title,
-      description: data.description,
+    const newRecipe = {id:id,title: data.title,description: data.description,
       products: data.products,
       ingredients: data.ingredients.map((item) => item.name),
-      instructions: data.instructions.map((item) => item.step),
-      difficulty: data.difficulty
+      instructions: data.instructions.map((item) => item.step),difficulty: data.difficulty
     };
     dispatch(updateRecipe({ recipe: newRecipe,userId:context.user.id }));
     navigate('/recipes');
