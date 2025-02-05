@@ -6,7 +6,10 @@ import { Document, Packer, Paragraph, TextRun } from "docx";
 import { saveAs } from "file-saver";
 
 const Download = ({recipe} :{recipe:Recipe} ) => {
+
   const handleDownload = async () => {
+console.log(recipe.authorId);
+
     try {
       const doc = new Document({
         sections: [

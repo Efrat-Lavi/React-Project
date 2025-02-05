@@ -35,11 +35,12 @@ const RecipesList = () => {
               sx={{
                 mb: 2,
                 '&:hover': {
-                  backgroundColor: 'rgba(255, 183, 77, 0.5)', // צבע כתום עם 50% שקיפות
+                  backgroundColor: 'rgba(255, 183, 77, 0.5)',
                 },
               }}
             >
-              <CardActionArea onClick={() => setSelectedRecipe(recipe)} sx={{ p: 1 }}>
+
+              <CardActionArea onClick={() =>setSelectedRecipe(recipe)} sx={{ p: 1 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <CardContent>
                     <Typography variant="h6" component="h2" sx={{ fontWeight: 'bold' }}>
@@ -48,8 +49,8 @@ const RecipesList = () => {
                     <Typography variant="body2">{recipe.description}</Typography>
                   </CardContent>
                   <Box>
-                    <DwonLoad recipe={recipe} />
-                    {context.user.id === recipe.authorId && (
+                    
+                    {context.user.id == recipe.authorId && (
                       <Button
                         size="small"
                         color="secondary"
@@ -58,7 +59,7 @@ const RecipesList = () => {
                       >
                         <EditIcon />
                       </Button>
-                    )}
+                    )}<DwonLoad recipe={recipe} />
                   </Box>
                 </Box>
               </CardActionArea>
