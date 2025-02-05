@@ -5,14 +5,10 @@ import AppLayout from "./components/appLayout"
 import RecipesList from "./components/recipe/recipesList"
 import AddRecipe from "./components/recipe/addRecipe"
 import UpdateRecipe from "./components/recipe/updateRecipe"
-import { AppBar } from "@mui/material"
 
 export const router = createBrowserRouter([
-    // {
-    //     path: '/n', element: <AppBar />},
     {
         path: '/', element: <AppLayout />,
-       
         children: [
             { path: '/', element: <Home /> },
             { path: 'recipes', element:  <RecipesList/>,
